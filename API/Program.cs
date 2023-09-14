@@ -1,4 +1,7 @@
 
+using Infrastructure.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 namespace API;
 
 public class Program
@@ -8,7 +11,9 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
+        string connectionString = builder.Configuration.GetConnectionString("StoreApiConnectionString");
+        builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+    
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
