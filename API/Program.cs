@@ -30,6 +30,7 @@ public class Program
       app.UseSwagger();
       app.UseSwaggerUI();
     }
+    app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
     SeedDatabase(app);
 
