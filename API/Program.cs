@@ -19,18 +19,19 @@ public class Program
     string? connectionString = builder.Configuration.GetConnectionString("StoreApiConnectionString");
     builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-    builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.AddAutoMapper(typeof(MappingProfiles));
     builder.Services.AddControllers();
+
+    builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
   options.InvalidModelStateResponseFactory = actionContext =>
   {
-    var errors = actionContext.ModelState
+    string[]? errors = actionContext.ModelState
     .Where(e => e.Value != null && e.Value.Errors.Count > 0)
     .SelectMany(x => x.Value.Errors)
     .Select(x => x.ErrorMessage).ToArray();
-    var errorResponse = new ValidationErrorResponse { Errors = errors };
+    ValidationErrorResponse errorResponse = new() { Errors = errors };
     return new BadRequestObjectResult(errorResponse);
   };
 });
