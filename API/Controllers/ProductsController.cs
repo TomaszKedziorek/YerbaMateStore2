@@ -6,7 +6,6 @@ using API.Helpers;
 using AutoMapper;
 using API.Dtos;
 using API.Errors;
-using Microsoft.VisualBasic;
 
 namespace API.Controllers;
 
@@ -27,7 +26,7 @@ public class ProductsController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetProducts(
+  public async Task<ActionResult<Pagination<ProductDto>>> GetProducts(
     [FromQuery] ProductSpecParams productParams)
   {
     var specification = new ProductsWithBrandsAndTypesAndCountriesSpecification(productParams);
@@ -36,8 +35,8 @@ public class ProductsController : ControllerBase
     IReadOnlyList<Product>? products = await _productRepository.ListWithSpecificationAsync(specification);
     int totalItems = await _productRepository.CountWithSpecificationAsync(countSpecification);
 
-    IReadOnlyList<ProductDto>? productDto = _mapper.Map<IReadOnlyList<ProductDto>>(products);
-    return Ok(productDto);
+    IReadOnlyList<ProductDto>? data = _mapper.Map<IReadOnlyList<ProductDto>>(products);
+    return Ok(new Pagination<ProductDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
   }
 
   [HttpGet("{id}")]
