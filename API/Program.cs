@@ -50,10 +50,11 @@ public class Program
       try
       {
         var dbContext = services.GetRequiredService<AppDbContext>();
-        if (dbContext.Database.GetPendingMigrations().Count() > 0)
+        if (dbContext.Database.GetPendingMigrations().Any())
         {
           await dbContext.Database.MigrateAsync();
         }
+        await AppDbContextSeed.SeedAsync(dbContext, loggerFactory);
       }
       catch (Exception e)
       {
