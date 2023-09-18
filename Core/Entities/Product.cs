@@ -10,5 +10,7 @@ public class Product : BaseEntity
   public int ProductTypeId { get; set; }
   public ProductBrand ProductBrand { get; set; }
   public int ProductBrandId { get; set; }
+  public Country Country { get; set; }
+  public int CountryId { get; set; }
 
 }
