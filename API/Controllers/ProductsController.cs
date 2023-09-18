@@ -1,7 +1,11 @@
-using Infrastructure.DataAccess;
 using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Core.Interfaces;
+using Core.Specifications;
+using API.Helpers;
+using AutoMapper;
+using API.Dtos;
+using API.Errors;
 
 namespace API.Controllers;
 
@@ -9,24 +13,41 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class ProductsController : ControllerBase
 {
-  private readonly AppDbContext _dbContext;
+  private readonly IGenericRepository<Product> _productRepository;
+  private readonly IMapper _mapper;
 
-  public ProductsController(AppDbContext dbContext)
+  public ProductsController(
+    IGenericRepository<Product> productRepository,
+    IMapper mapper
+    )
   {
-    _dbContext = dbContext;
+    _productRepository = productRepository;
+    _mapper = mapper;
   }
 
   [HttpGet]
-  public async Task<ActionResult<List<Product>>> GetProducts()
+  public async Task<ActionResult<Pagination<ProductDto>>> GetProducts(
+    [FromQuery] ProductSpecParams productParams)
   {
-    var products = await _dbContext.Products.ToListAsync();
-    return Ok(products);
+    var specification = new ProductsWithBrandsAndTypesAndCountriesSpecification(productParams);
+    var countSpecification = new ProductsWithFiltersForCountSpecification(productParams);
+
+    IReadOnlyList<Product>? products = await _productRepository.ListWithSpecificationAsync(specification);
+    int totalItems = await _productRepository.CountWithSpecificationAsync(countSpecification);
+
+    IReadOnlyList<ProductDto>? data = _mapper.Map<IReadOnlyList<ProductDto>>(products);
+    return Ok(new Pagination<ProductDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
   }
 
   [HttpGet("{id}")]
-  public async Task<ActionResult<Product>> GetProduct(int id)
+  [ProducesResponseType(StatusCodes.Status200OK)]
+  [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+  public async Task<ActionResult<ProductDto>> GetProduct(int id)
   {
-    Product? product = await _dbContext.Products.FindAsync(id);
-    return product;
+    var specification = new ProductsWithBrandsAndTypesAndCountriesSpecification(id);
+    Product product = await _productRepository.GetEntityWithSpecificationAsync(specification);
+    if (product == null)
+      return NotFound(new ApiResponse(404));
+    return _mapper.Map<ProductDto>(product);
   }
 }

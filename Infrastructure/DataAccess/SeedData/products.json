@@ -1,0 +1,128 @@
+[
+  {
+    "Name": "Kurupi Menta y Boldo 500g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 25,
+    "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-500.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1,
+    "CountryId": 1
+  },
+  {
+    "Name": "Pajarito classic 500g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 23,
+    "PictureUrl": "images/products/ym-pajarito-cl-500.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2,
+    "CountryId": 1
+  },
+  {
+    "Name": "Pajarito classic 1000g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 44,
+    "PictureUrl": "images/products/ym-pajarito-cl-1000.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2,
+    "CountryId": 1
+  },
+  {
+    "Name": "Rosamonte classic 500g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 44,
+    "PictureUrl": "images/products/ym-rosamonte-cl-500.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 4,
+    "CountryId": 2
+  },
+  {
+    "Name": "Pajarito Hierbas Naturales 500g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 23,
+    "PictureUrl": "images/products/ym-pajarito-hierbas-naturales-500.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2,
+    "CountryId": 1
+  },
+  {
+    "Name": "Guarani Menta & Boldo 500g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 24,
+    "PictureUrl": "images/products/ym-guarani-menta-y-boldo-500.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1,
+    "CountryId": 1
+  },
+  {
+    "Name": "Kurupi Menta y Boldo 250g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 15,
+    "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-250.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1,
+    "CountryId": 1
+  },
+  {
+    "Name": "Yerba Mate Green 400g",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 15,
+    "PictureUrl": "images/products/ym-green-cl-400.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 6,
+    "CountryId": 3
+  },
+  {
+    "Name": "Goblet Palo Santo 120-150ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 40,
+    "PictureUrl": "images/products/cup-palo-santo-120-150.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 7,
+    "CountryId": 2
+  },
+  {
+    "Name": "Cup Palo Santo 150-210ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 50,
+    "PictureUrl": "images/products/cup-palo-santo-150-210.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 7,
+    "CountryId": 2
+  },
+  {
+    "Name": "Gourd 150-210ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 32,
+    "PictureUrl": "images/products/cup-gourd-150-210.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 7,
+    "CountryId": 2
+  },
+  {
+    "Name": "Bombilla Green stone 21cm",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 32,
+    "PictureUrl": "images/products/bomb-steel-green-21.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 8,
+    "CountryId": 2
+  },
+  {
+    "Name": "Bombilla Red stone 21cm",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 32,
+    "PictureUrl": "images/products/bomb-steel-red-21.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 8,
+    "CountryId": 2
+  },
+  {
+    "Name": "Bombilla 19cm",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 32,
+    "PictureUrl": "images/products/bomb-steel-19.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 7,
+    "CountryId": 2
+  }
+]
