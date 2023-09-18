@@ -35,6 +35,8 @@ public class Program
 
     app.UseHttpsRedirection();
 
+    app.UseStaticFiles();
+
     app.UseAuthorization();
 
 
