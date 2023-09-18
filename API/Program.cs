@@ -1,4 +1,5 @@
 using API.Helpers;
+using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,8 @@ public class Program
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
+    app.UseMiddleware<ExceptionMiddleware>();
+    
     if (app.Environment.IsDevelopment())
     {
       app.UseSwagger();
