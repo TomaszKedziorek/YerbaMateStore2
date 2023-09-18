@@ -29,6 +29,8 @@ public class Program
       app.UseSwaggerUI();
     }
 
+    SeedDatabase(app);
+
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
@@ -37,5 +39,27 @@ public class Program
     app.MapControllers();
 
     app.Run();
+  }
+
+  static async void SeedDatabase(WebApplication app)
+  {
+    using (var scope = app.Services.CreateScope())
+    {
+      var services = scope.ServiceProvider;
+      var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+      try
+      {
+        var dbContext = services.GetRequiredService<AppDbContext>();
+        if (dbContext.Database.GetPendingMigrations().Count() > 0)
+        {
+          await dbContext.Database.MigrateAsync();
+        }
+      }
+      catch (Exception e)
+      {
+        var logger = loggerFactory.CreateLogger<Program>();
+        logger.LogError(e, "An error occured during migrations");
+      }
+    }
   }
 }
