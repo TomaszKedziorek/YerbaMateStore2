@@ -5,6 +5,7 @@ using Core.Interfaces;
 using Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace API;
 
@@ -35,7 +36,10 @@ public class Program
 });
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(c =>
+    {
+      c.SwaggerDoc("v1", new OpenApiInfo { Title = "YerbaMateStore2 API", Version = "v1" });
+    });
 
     var app = builder.Build();
 
@@ -45,7 +49,10 @@ public class Program
     if (app.Environment.IsDevelopment())
     {
       app.UseSwagger();
-      app.UseSwaggerUI();
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "YerbaMateStore2 API");
+      });
     }
     app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
