@@ -14,7 +14,7 @@ public class Program
     string? connectionString = builder.Configuration.GetConnectionString("StoreApiConnectionString");
     builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-    builder.Services.AddScoped<IProductRepository, ProductRepository>();
+    builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
