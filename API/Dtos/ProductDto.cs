@@ -1,5 +1,4 @@
 namespace API.Dtos;
-
 public class ProductDto
 {
   public int Id { get; set; }
@@ -8,7 +7,4 @@ public class ProductDto
   public decimal Price { get; set; }
   public string PictureUrl { get; set; } = "";
   public string ProductType { get; set; } = "";
-  public string ProductBrand { get; set; } = "";
-  public string Country { get; set; } = "";
-  public string CountryCode { get; set; } = "";
 }
