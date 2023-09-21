@@ -1,0 +1,29 @@
+[
+  {
+    "Name": "Goblet Palo Santo 120-150ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 40,
+    "PictureUrl": "images/products/cup-palo-santo-120-150.png",
+    "Material": "Palo Santo, metal",
+    "Volume": "120-150ml",
+    "ProductTypeId": 3
+  },
+  {
+    "Name": "Cup Palo Santo 150-210ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 50,
+    "PictureUrl": "images/products/cup-palo-santo-150-210.png",
+    "Material": "Palo Santo, metal",
+    "Volume": "150-210ml",
+    "ProductTypeId": 3
+  },
+  {
+    "Name": "Gourd 150-210ml",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Price": 32,
+    "PictureUrl": "images/products/cup-gourd-150-210.png",
+    "Material": "Gourd, metal",
+    "Volume": "150-210ml",
+    "ProductTypeId": 3
+  }
+]

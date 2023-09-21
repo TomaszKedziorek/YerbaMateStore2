@@ -1,0 +1,20 @@
+[
+  {
+    "ProductId": 9,
+    "Length": "21cm",
+    "Material": "INOX steel",
+    "IsUnscrewed": true
+  },
+  {
+    "ProductId": 10,
+    "Length": "21cm",
+    "Material": "INOX steel",
+    "IsUnscrewed": true
+  },
+  {
+    "Id": 11,
+    "Length": "19cm",
+    "Material": "Stainless steel",
+    "IsUnscrewed": false
+  }
+]
