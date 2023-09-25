@@ -1,9 +1,19 @@
 [
   {
     "Name": "Kurupi Menta y Boldo 500g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Kurupi Menta y Boldo is a natural mixture of Yerba Mate and herbs (peppermint, boldo).</p>",
     "Price": 25,
-    "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-500.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 1,
+        "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-500.png"
+      },
+      {
+        "ProductId": 1,
+        "PictureUrl": "images/products/kurupi_logo.png"
+      }
+    ],
     "Composition": "Yerba Mate, mint, boldo",
     "HasAdditives": true,
     "Weight": "500g",
@@ -13,9 +23,15 @@
   },
   {
     "Name": "Pajarito classic 500g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Pajarito Elaborada Con Palo Tradicional is a traditional yerba mate from Paraguay. It has a strong smoky aroma and a distinct flavor.</p>",
     "Price": 23,
-    "PictureUrl": "images/products/ym-pajarito-cl-500.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 2,
+        "PictureUrl": "images/products/ym-pajarito-cl-500.png"
+      }
+    ],
     "Composition": "Yerba Mate 100%",
     "HasAdditives": false,
     "Weight": "500g",
@@ -25,9 +41,15 @@
   },
   {
     "Name": "Pajarito classic 1000g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Pajarito Elaborada Con Palo Tradicional is a traditional yerba mate from Paraguay. It has a strong smoky aroma and a distinct flavor.</p>",
     "Price": 44,
-    "PictureUrl": "images/products/ym-pajarito-cl-1000.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 3,
+        "PictureUrl": "images/products/ym-pajarito-cl-1000.png"
+      }
+    ],
     "Composition": "Yerba Mate 100%",
     "HasAdditives": false,
     "Weight": "1000g",
@@ -37,9 +59,19 @@
   },
   {
     "Name": "Rosamonte classic 500g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Rosamonte Elaborada con Palo is a traditional Argentinian yerba mate without additives with a smoky-bitter aroma. One of the most popular yerba mate on the market.</p>",
     "Price": 44,
-    "PictureUrl": "images/products/ym-rosamonte-cl-500.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 4,
+        "PictureUrl": "images/products/ym-rosamonte-cl-500.png"
+      },
+      {
+        "ProductId": 4,
+        "PictureUrl": "images/products/rosamonte_logo.png"
+      }
+    ],
     "Composition": "Yerba Mate 100%",
     "HasAdditives": false,
     "Weight": "500g",
@@ -49,9 +81,15 @@
   },
   {
     "Name": "Pajarito Hierbas Naturales 500g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p><strong>Pajarito Compuesta con Hierbas</strong> is a herbal yerba mate from Paraguay. It has a bitter aroma combined with a crisp addition of mint. It stimulates well.</p>",
     "Price": 23,
-    "PictureUrl": "images/products/ym-pajarito-hierbas-naturales-500.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 5,
+        "PictureUrl": "images/products/ym-pajarito-hierbas-naturales-500.png"
+      }
+    ],
     "Composition": "Yerba Mate, mint, burito, cedron",
     "HasAdditives": true,
     "Weight": "500g",
@@ -61,9 +99,19 @@
   },
   {
     "Name": "Guarani Menta & Boldo 500g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p><strong>Guarani Boldo Menta </strong>is one of the most mate tea combinations in South America. Smoky and bitter mate tea was combined with refreshing mint and delicate boldo.</p>",
     "Price": 24,
-    "PictureUrl": "images/products/ym-guarani-menta-y-boldo-500.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 6,
+        "PictureUrl": "images/products/ym-guarani-menta-y-boldo-500_1.png"
+      },
+      {
+        "ProductId": 6,
+        "PictureUrl": "images/products/ym-guarani-menta-y-boldo-500_2.png"
+      }
+    ],
     "Composition": "Yerba Mate, mint, boldo",
     "HasAdditives": true,
     "Weight": "500g",
@@ -73,9 +121,19 @@
   },
   {
     "Name": "Kurupi Menta y Boldo 250g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Kurupi Menta y Boldo is a natural mixture of Yerba Mate and herbs (peppermint, boldo).</p>",
     "Price": 15,
-    "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-250.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 7,
+        "PictureUrl": "images/products/ym-kurupi-menta-y-boldo-250.png"
+      },
+      {
+        "ProductId": 7,
+        "PictureUrl": "images/products/kurupi_logo.png"
+      }
+    ],
     "Composition": "Yerba Mate, mint, boldo",
     "HasAdditives": true,
     "Weight": "250g",
@@ -85,9 +143,15 @@
   },
   {
     "Name": "Yerba Mate Green 400g",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Mate Green Despalada is&nbsp; a delicate yerba without any additions.<br />The leaves are dried without smoke, with hot air, and short aging time makes the drought remains a green color.</p>",
     "Price": 15,
-    "PictureUrl": "images/products/ym-green-cl-400.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 8,
+        "PictureUrl": "images/products/ym-green-cl-400.png"
+      }
+    ],
     "Composition": "Yerba Mate 100%",
     "HasAdditives": false,
     "Weight": "400g",

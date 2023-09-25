@@ -1,9 +1,15 @@
 [
   {
     "Name": "Bombilla Green stone 21cm",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Bombilla Grande made by INOX steel, with green cooling stone. Equipped with spoon-like filter with strainer. Allows comfortable drinking of most types of yerba mate. Producer: Cebador</p><p> With cleaning tool in package.</p>",
     "Price": 32,
-    "PictureUrl": "images/products/bomb-steel-green-21.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 9,
+        "PictureUrl": "images/products/bomb-steel-green-21.png"
+      }
+    ],
     "ProductTypeId": 2,
     "Length": "21cm",
     "Material": "INOX steel",
@@ -11,9 +17,15 @@
   },
   {
     "Name": "Bombilla Red stone 21cm",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Bombilla Grande made by INOX steel, with red cooling stone. Equipped with spoon-like filter with strainer. Allows comfortable drinking of most types of yerba mate. Producer: Cebador</p><p> With cleaning tool in package.</p>",
     "Price": 32,
-    "PictureUrl": "images/products/bomb-steel-red-21.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 10,
+        "PictureUrl": "images/products/bomb-steel-red-21.png"
+      }
+    ],
     "ProductTypeId": 2,
     "Length": "21cm",
     "Material": "INOX steel",
@@ -21,9 +33,15 @@
   },
   {
     "Name": "Bombilla 19cm",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero urna.",
+    "Description": "<p>Simple stainless steel bombilla. Equipped with spoon-like filter with strainer. Allows comfortable drinking of most types of yerba mate. Producer: Cebador</p>",
     "Price": 32,
-    "PictureUrl": "images/products/bomb-steel-19.png",
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 11,
+        "PictureUrl": "images/products/bomb-steel-19.png"
+      }
+    ],
     "ProductTypeId": 2,
     "Length": "19cm",
     "Material": "Stainless steel",
