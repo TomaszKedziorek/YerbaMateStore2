@@ -1,17 +1,24 @@
+using System.Linq.Expressions;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Specifications;
 
-public class CupSpecification : BaseSpecfication<Cup>
+public class YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification : BaseSpecfication<YerbaMate>
 {
-  public CupSpecification(CupSpecParams productParams)
+  public YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(YerbaMateSpecParams productParams)
   : base(x =>
       (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
-      (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
-      )
+      (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
+      (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId) &&
+      (!productParams.CountryId.HasValue || x.CountryId == productParams.CountryId)
+        )
   {
+    AddInclude(q => q.Include(x => x.Country));
+    AddInclude(q => q.Include(x => x.ProductBrand));
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
+
     ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
     if (!string.IsNullOrEmpty(productParams.Sort))
@@ -36,8 +43,12 @@ public class CupSpecification : BaseSpecfication<Cup>
       }
     }
   }
-  public CupSpecification(int id) : base(x => x.Id == id)
+  public YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(int id) : base(x => x.Id == id)
   {
+    AddInclude(q => q.Include(x => x.Country));
+    AddInclude(q => q.Include(x => x.ProductBrand));
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
+
   }
 }

@@ -3,16 +3,17 @@ using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Specifications;
-
-public class ProductWithTypeSpecification : BaseSpecfication<Product>
+public class BombillaWithTypeAndImagesSpecification : BaseSpecfication<Bombilla>
 {
-  public ProductWithTypeSpecification(ProductSpecParams productParams)
+  public BombillaWithTypeAndImagesSpecification(BombillaSpecParams productParams)
   : base(x =>
       (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
       (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
-        )
+      )
   {
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
+
     ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
     if (!string.IsNullOrEmpty(productParams.Sort))
@@ -37,8 +38,9 @@ public class ProductWithTypeSpecification : BaseSpecfication<Product>
       }
     }
   }
-  public ProductWithTypeSpecification(int id) : base(x => x.Id == id)
+  public BombillaWithTypeAndImagesSpecification(int id) : base(x => x.Id == id)
   {
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
   }
 }

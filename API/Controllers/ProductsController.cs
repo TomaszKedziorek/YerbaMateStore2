@@ -38,7 +38,7 @@ public class ProductsController : ControllerBase
   public async Task<ActionResult<Pagination<ProductDto>>> GetProducts(
     [FromQuery] ProductSpecParams productParams)
   {
-    var specification = new ProductWithTypeSpecification(productParams);
+    var specification = new ProductWithImagesAndTypeSpecification(productParams);
     var countSpecification = new ProductFiltersForCountSpecification(productParams);
 
     IReadOnlyList<Product>? products = await _productRepository.ListWithSpecificationAsync(specification);
@@ -51,7 +51,7 @@ public class ProductsController : ControllerBase
   [HttpGet("{id}")]
   public async Task<ActionResult<ProductDto>> GetProduct(int id)
   {
-    var specification = new ProductWithTypeSpecification(id);
+    var specification = new ProductWithImagesAndTypeSpecification(id);
     Product product = await _productRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));
@@ -62,7 +62,7 @@ public class ProductsController : ControllerBase
   public async Task<ActionResult<Pagination<YerbaMateDto>>> GetYerbaMateProducts(
     [FromQuery] YerbaMateSpecParams productParams)
   {
-    var specification = new YerbaMateWithBrandAndTypeAndCountrySpecification(productParams);
+    var specification = new YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(productParams);
     var countSpecification = new YerbaMateWithFiltersForCountSpecification(productParams);
 
     IReadOnlyList<YerbaMate>? products = await _yerbaMateRepository.ListWithSpecificationAsync(specification);
@@ -75,7 +75,7 @@ public class ProductsController : ControllerBase
   [HttpGet("yerbamate/{id}")]
   public async Task<ActionResult<YerbaMateDto>> GetYerbaMateProduct(int id)
   {
-    var specification = new YerbaMateWithBrandAndTypeAndCountrySpecification(id);
+    var specification = new YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(id);
     YerbaMate product = await _yerbaMateRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));
@@ -86,7 +86,7 @@ public class ProductsController : ControllerBase
   public async Task<ActionResult<Pagination<CupDto>>> GetCupProducts(
     [FromQuery] CupSpecParams productParams)
   {
-    var specification = new CupSpecification(productParams);
+    var specification = new CupWithTypeAndImagesSpecification(productParams);
     var countSpecification = new CupWithFiltersForCountSpecification(productParams);
 
     IReadOnlyList<Cup>? products = await _cupRepository.ListWithSpecificationAsync(specification);
@@ -99,7 +99,7 @@ public class ProductsController : ControllerBase
   [HttpGet("cup/{id}")]
   public async Task<ActionResult<CupDto>> GetCupProduct(int id)
   {
-    var specification = new CupSpecification(id);
+    var specification = new CupWithTypeAndImagesSpecification(id);
     Cup product = await _cupRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));
@@ -110,7 +110,7 @@ public class ProductsController : ControllerBase
   public async Task<ActionResult<Pagination<BombillaDto>>> GetBombillaProducts(
     [FromQuery] BombillaSpecParams productParams)
   {
-    var specification = new BombillaSpecification(productParams);
+    var specification = new BombillaWithTypeAndImagesSpecification(productParams);
     var countSpecification = new BombillaWithFiltersForCountSpecification(productParams);
 
     IReadOnlyList<Bombilla>? products = await _bombillaRepository.ListWithSpecificationAsync(specification);
@@ -123,7 +123,7 @@ public class ProductsController : ControllerBase
   [HttpGet("bombilla/{id}")]
   public async Task<ActionResult<BombillaDto>> GetBombillaProduct(int id)
   {
-    var specification = new BombillaSpecification(id);
+    var specification = new BombillaWithTypeAndImagesSpecification(id);
     Bombilla product = await _bombillaRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));

@@ -4,15 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Specifications;
 
-public class BombillaSpecification : BaseSpecfication<Bombilla>
+public class ProductWithImagesAndTypeSpecification : BaseSpecfication<Product>
 {
-  public BombillaSpecification(BombillaSpecParams productParams)
+  public ProductWithImagesAndTypeSpecification(ProductSpecParams productParams)
   : base(x =>
-      (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
-      (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
-      )
+          (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search))
+          &&
+          (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId)
+        )
   {
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
     ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
     if (!string.IsNullOrEmpty(productParams.Sort))
@@ -37,8 +39,9 @@ public class BombillaSpecification : BaseSpecfication<Bombilla>
       }
     }
   }
-  public BombillaSpecification(int id) : base(x => x.Id == id)
+  public ProductWithImagesAndTypeSpecification(int id) : base(x => x.Id == id)
   {
     AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
   }
 }
