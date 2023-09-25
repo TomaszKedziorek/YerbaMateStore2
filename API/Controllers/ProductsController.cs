@@ -38,8 +38,8 @@ public class ProductsController : ControllerBase
   public async Task<ActionResult<Pagination<ProductDto>>> GetProducts(
     [FromQuery] ProductSpecParams productParams)
   {
-    var specification = new ProductWithImagesAndTypeSpecification(productParams);
-    var countSpecification = new ProductFiltersForCountSpecification(productParams);
+    var specification = new ProductWithImagesAndTypeSpecification<Product>(productParams);
+    var countSpecification = new ProductFiltersForCountSpecification<Product>(productParams);
 
     IReadOnlyList<Product>? products = await _productRepository.ListWithSpecificationAsync(specification);
     int totalItems = await _productRepository.CountWithSpecificationAsync(countSpecification);
@@ -51,7 +51,7 @@ public class ProductsController : ControllerBase
   [HttpGet("{id}")]
   public async Task<ActionResult<ProductDto>> GetProduct(int id)
   {
-    var specification = new ProductWithImagesAndTypeSpecification(id);
+    var specification = new ProductWithImagesAndTypeSpecification<Product>(id);
     Product product = await _productRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));
@@ -84,10 +84,10 @@ public class ProductsController : ControllerBase
 
   [HttpGet("cup")]
   public async Task<ActionResult<Pagination<CupDto>>> GetCupProducts(
-    [FromQuery] CupSpecParams productParams)
+    [FromQuery] ProductSpecParams productParams)
   {
-    var specification = new CupWithTypeAndImagesSpecification(productParams);
-    var countSpecification = new CupWithFiltersForCountSpecification(productParams);
+    var specification = new ProductWithImagesAndTypeSpecification<Cup>(productParams);
+    var countSpecification = new ProductFiltersForCountSpecification<Cup>(productParams);
 
     IReadOnlyList<Cup>? products = await _cupRepository.ListWithSpecificationAsync(specification);
     int totalItems = await _cupRepository.CountWithSpecificationAsync(countSpecification);
@@ -99,7 +99,7 @@ public class ProductsController : ControllerBase
   [HttpGet("cup/{id}")]
   public async Task<ActionResult<CupDto>> GetCupProduct(int id)
   {
-    var specification = new CupWithTypeAndImagesSpecification(id);
+    var specification = new ProductWithImagesAndTypeSpecification<Cup>(id);
     Cup product = await _cupRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));
@@ -108,10 +108,10 @@ public class ProductsController : ControllerBase
 
   [HttpGet("bombilla")]
   public async Task<ActionResult<Pagination<BombillaDto>>> GetBombillaProducts(
-    [FromQuery] BombillaSpecParams productParams)
+    [FromQuery] ProductSpecParams productParams)
   {
-    var specification = new BombillaWithTypeAndImagesSpecification(productParams);
-    var countSpecification = new BombillaWithFiltersForCountSpecification(productParams);
+    var specification = new ProductWithImagesAndTypeSpecification<Bombilla>(productParams);
+    var countSpecification = new ProductFiltersForCountSpecification<Bombilla>(productParams);
 
     IReadOnlyList<Bombilla>? products = await _bombillaRepository.ListWithSpecificationAsync(specification);
     int totalItems = await _bombillaRepository.CountWithSpecificationAsync(countSpecification);
@@ -123,7 +123,7 @@ public class ProductsController : ControllerBase
   [HttpGet("bombilla/{id}")]
   public async Task<ActionResult<BombillaDto>> GetBombillaProduct(int id)
   {
-    var specification = new BombillaWithTypeAndImagesSpecification(id);
+    var specification = new ProductWithImagesAndTypeSpecification<Bombilla>(id);
     Bombilla product = await _bombillaRepository.GetEntityWithSpecificationAsync(specification);
     if (product == null)
       return NotFound(new ApiResponse(404));

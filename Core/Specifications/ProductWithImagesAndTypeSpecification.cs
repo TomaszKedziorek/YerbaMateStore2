@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Specifications;
 
-public class ProductWithImagesAndTypeSpecification : BaseSpecfication<Product>
+public class ProductWithImagesAndTypeSpecification<T> : BaseSpecfication<T> where T : Product
 {
   public ProductWithImagesAndTypeSpecification(ProductSpecParams productParams)
   : base(x =>
