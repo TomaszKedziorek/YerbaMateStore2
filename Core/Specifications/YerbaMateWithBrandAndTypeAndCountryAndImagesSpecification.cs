@@ -1,11 +1,12 @@
 using System.Linq.Expressions;
 using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Specifications;
 
-public class ProductsWithBrandsAndTypesAndCountriesSpecification : BaseSpecfication<Product>
+public class YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification : BaseSpecfication<YerbaMate>
 {
-  public ProductsWithBrandsAndTypesAndCountriesSpecification(ProductSpecParams productParams)
+  public YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(YerbaMateSpecParams productParams)
   : base(x =>
       (string.IsNullOrEmpty(productParams.Search) || x.Name.ToLower().Contains(productParams.Search)) &&
       (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) &&
@@ -13,11 +14,12 @@ public class ProductsWithBrandsAndTypesAndCountriesSpecification : BaseSpecficat
       (!productParams.CountryId.HasValue || x.CountryId == productParams.CountryId)
         )
   {
-    AddInclude(x => x.ProductType);
-    AddInclude(x => x.ProductBrand);
-    AddInclude(x => x.Country);
-    // AddOrderByAscending(x => x.Name);
-    ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1),productParams.PageSize);
+    AddInclude(q => q.Include(x => x.Country));
+    AddInclude(q => q.Include(x => x.ProductBrand));
+    AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
+
+    ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
     if (!string.IsNullOrEmpty(productParams.Sort))
     {
@@ -41,11 +43,12 @@ public class ProductsWithBrandsAndTypesAndCountriesSpecification : BaseSpecficat
       }
     }
   }
-
-  public ProductsWithBrandsAndTypesAndCountriesSpecification(int id) : base(x => x.Id == id)
+  public YerbaMateWithBrandAndTypeAndCountryAndImagesSpecification(int id) : base(x => x.Id == id)
   {
-    AddInclude(x => x.ProductType);
-    AddInclude(x => x.ProductBrand);
-    AddInclude(x => x.Country);
+    AddInclude(q => q.Include(x => x.Country));
+    AddInclude(q => q.Include(x => x.ProductBrand));
+    AddInclude(q => q.Include(x => x.ProductType));
+    AddInclude(q => q.Include(x => x.Images));
+
   }
 }

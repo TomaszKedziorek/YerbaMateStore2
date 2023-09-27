@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Core.Specifications;
 public class BaseSpecfication<T> : ISpecification<T>
@@ -11,14 +12,14 @@ public class BaseSpecfication<T> : ISpecification<T>
   }
 
   public Expression<Func<T, bool>> Criteria { get; }
-  public List<Expression<Func<T, object>>> Includes { get; } = new();
+  public List<Func<IQueryable<T>, IIncludableQueryable<T, object>>> Includes { get; } = new();
   public Expression<Func<T, object>> OrderByAscending { get; private set; }
   public Expression<Func<T, object>> OrderByDescending { get; private set; }
   public int Take { get; private set; }
   public int Skip { get; private set; }
   public bool IsPagingEnabled { get; private set; }
 
-  protected void AddInclude(Expression<Func<T, object>> includeExpression)
+  protected void AddInclude(Func<IQueryable<T>, IIncludableQueryable<T, object>> includeExpression)
   {
     Includes.Add(includeExpression);
   }

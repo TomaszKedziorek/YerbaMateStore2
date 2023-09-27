@@ -1,23 +1,32 @@
 using API.Dtos;
 using AutoMapper;
 using Core.Entities;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.Helpers;
-public class ProductUrlResolver : IValueResolver<Product, ProductDto, string>
+public class ProductImagesUrlResolver : IValueResolver<Product, ProductDto, IEnumerable<ImageDto>>
 {
   private readonly IConfiguration _configuration;
 
-  public ProductUrlResolver(IConfiguration configuration)
+  public ProductImagesUrlResolver(IConfiguration configuration)
   {
     _configuration = configuration;
   }
 
-  public string Resolve(Product source, ProductDto destination, string destMember, ResolutionContext context)
+  public IEnumerable<ImageDto> Resolve(Product source, ProductDto destination, IEnumerable<ImageDto> destMember, ResolutionContext context)
   {
-    if (!string.IsNullOrEmpty(source.PictureUrl))
+    List<ImageDto> images = new();
+    if (!source.Images.IsNullOrEmpty())
     {
-      return _configuration["ApiUrl"] + source.PictureUrl;
+      foreach (var image in source.Images)
+      {
+        images.Add(new ImageDto()
+        {
+          Id = image.Id,
+          PictureUrl = _configuration["ApiUrl"] + image.PictureUrl
+        });
+      }
     }
-    return string.Empty;
+    return images;
   }
 }

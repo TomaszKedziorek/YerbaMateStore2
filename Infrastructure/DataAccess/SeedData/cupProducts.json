@@ -1,0 +1,51 @@
+[
+  {
+    "Name": "Goblet Palo Santo 120-150ml",
+    "Description": "<p>Goblet shape vessel made of palo santo wood. The south america tree and it's name means a 'Holy Trunk' is rich in a fragrant resin with an ethereal aroma released on contact with warm water. The infusion prepared in such vessel achieve additional unique taset.</p>",
+    "Price": 40,
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 12,
+        "PictureUrl": "images/products/cup-palo-santo-120-150.png"
+      }
+    ],
+    "Material": "Palo Santo, metal",
+    "Volume": "120-150ml",
+    "ProductTypeId": 3
+  },
+  {
+    "Name": "Cup Palo Santo 150-210ml",
+    "Description": "<p>This is large yerba vessel made of palo santo wood. The south america tree and it's name means a 'Holy Trunk' is rich in a fragrant resin with an ethereal aroma released on contact with warm water. The infusion prepared in such vessel achieve additional unique taset.</p>",
+    "Price": 50,
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 13,
+        "PictureUrl": "images/products/cup-palo-santo-150-210_1.png"
+      },
+      {
+        "ProductId": 13,
+        "PictureUrl": "images/products/cup-palo-santo-150-210_2.png"
+      }
+    ],
+    "Material": "Palo Santo, metal",
+    "Volume": "150-210ml",
+    "ProductTypeId": 3
+  },
+  {
+    "Name": "Gourd 150-210ml",
+    "Description": "<p>A small&nbsp; gourd with a red-brown color, obtained by thermal method. It has a metal fitting at the top and thick walls to ensure durability. <br />WARNING!!! The gourd vessel requires preparation before use, the so-called curado.</p>",
+    "Price": 32,
+    "Quantity": 50,
+    "Images": [
+      {
+        "ProductId": 14,
+        "PictureUrl": "images/products/cup-gourd-150-210.png"
+      }
+    ],
+    "Material": "Gourd, metal",
+    "Volume": "150-210ml",
+    "ProductTypeId": 3
+  }
+]

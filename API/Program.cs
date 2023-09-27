@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using API.Errors;
 using API.Helpers;
 using API.Middleware;
@@ -24,17 +25,20 @@ public class Program
 
     builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     builder.Services.Configure<ApiBehaviorOptions>(options =>
-{
-  options.InvalidModelStateResponseFactory = actionContext =>
-  {
-    string[]? errors = actionContext.ModelState
-    .Where(e => e.Value != null && e.Value.Errors.Count > 0)
-    .SelectMany(x => x.Value.Errors)
-    .Select(x => x.ErrorMessage).ToArray();
-    ValidationErrorResponse errorResponse = new() { Errors = errors };
-    return new BadRequestObjectResult(errorResponse);
-  };
-});
+    {
+      options.InvalidModelStateResponseFactory = actionContext =>
+      {
+        string[]? errors = actionContext.ModelState
+        .Where(e => e.Value != null && e.Value.Errors.Count > 0)
+        .SelectMany(x => x.Value.Errors)
+        .Select(x => x.ErrorMessage).ToArray();
+        ValidationErrorResponse errorResponse = new() { Errors = errors };
+        return new BadRequestObjectResult(errorResponse);
+      };
+    });
+    builder.Services.AddControllers().AddJsonOptions(options =>
+     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+   );
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(c =>
