@@ -16,6 +16,15 @@ public class Program
   {
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.AddCors(options =>
+    {
+      options.AddPolicy("FrontEndClient", policyBuilder =>
+        policyBuilder
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins(builder.Configuration.GetSection("ClientUrl").Get<string[]>()));
+    });
+
     // Add services to the container.
     string? connectionString = builder.Configuration.GetConnectionString("StoreApiConnectionString");
     builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
@@ -36,6 +45,7 @@ public class Program
         return new BadRequestObjectResult(errorResponse);
       };
     });
+
     builder.Services.AddControllers().AddJsonOptions(options =>
      options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
    );
@@ -47,6 +57,7 @@ public class Program
     });
 
     var app = builder.Build();
+    app.UseCors("FrontEndClient");
 
     // Configure the HTTP request pipeline.
     app.UseMiddleware<ExceptionMiddleware>();
