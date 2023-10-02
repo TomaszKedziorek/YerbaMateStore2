@@ -4,10 +4,13 @@
     <a class="navbar-brand" href="#">
       <h2>{{title}}</h2>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
+
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse text-uppercase" id="navbarColor01" style="font-size: large;">
+
+    <div class="collapse navbar-collapse text-uppercase" [collapse]="isCollapsed" [isAnimated]="true"
+      style="font-size: large;">
       <ul class="navbar-nav me-auto">
         <li class="nav-item"> <a class="nav-link" href="#">Home</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#">Shop</a> </li>
@@ -17,16 +20,14 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link me-3 cart">
-            <div class="position-relative">
-              <i class="bi bi-cart-fill h4"></i>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-primary"
-                style="font-size:small;"> 5 </span>
-            </div>
+            <i class="bi bi-cart-fill h4 mb-0"></i>
+            <span class="badge rounded-circle bg-primary" style="font-size:small;"> 5 </span>
           </a>
         </li>
         <li class="nav-item"> <a class="nav-link" href="#">Login</a> </li>
         <li class="nav-item"> <a class="nav-link" href="#">Sign up</a> </li>
       </ul>
+
       <div class="form-check form-switch theme-switch">
         <input [checked]="isLightTheme" (change)="onThemeSwitch()" type="checkbox" id="themeCheckbox"
           class="form-check-input rounded-5 bg-secondary" [ngClass]="{'border-dark':isLightTheme}">
@@ -35,6 +36,7 @@
           <i *ngIf="isLightTheme" class="bi bi-brightness-high-fill"></i>
         </label>
       </div>
+
     </div>
   </div>
 </nav>

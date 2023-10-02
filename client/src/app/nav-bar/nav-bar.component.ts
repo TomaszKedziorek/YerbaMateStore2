@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
   public title: string = 'Yerba Mate Sotre 2.0';
+
+  public isCollapsed: boolean = true;
   public isLightTheme: boolean = false;
 
   public onThemeSwitch(): void {
