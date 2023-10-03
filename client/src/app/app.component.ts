@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from './../environments/environment';
-import { IProduct } from './models/IProduct';
-import { IPagination } from './models/IPagination';
-import { IBombilla } from './models/IBombilla';
+import { IProduct } from './shared/models/IProduct';
+import { IPagination } from './shared/models/IPagination';
+import { IBombilla } from './shared/models/IBombilla';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
