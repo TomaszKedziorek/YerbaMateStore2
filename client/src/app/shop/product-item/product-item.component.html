@@ -1,0 +1,11 @@
+<div class="card h-100 shadow-sm">
+  <img class="object-fit-contain card-img-top" [src]="product.images[0].pictureUrl" [alt]="product.name">
+  <div class="card-body d-flex flex-column">
+    <a href="#" class="h6 stretched-link text-decoration-none">{{product.name}}</a>
+    <span class="mb-2 text-success fw-bold">{{product.price|currency}}</span>
+    <div class="mt-auto row justify-content-evenly mx-1">
+      <button type="button" class="col z-1 btn btn-outline-secondary me-1 bi bi-cart-plus-fill"></button>
+      <button type="button" class="col z-1 btn btn-outline-secondary ms-1 ">View</button>
+    </div>
+  </div>
+</div>
