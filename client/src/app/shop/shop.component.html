@@ -1,1 +1,54 @@
-<p>shop works!</p>
+<div class="container">
+  <div class="row">
+
+    <section class="col-md-2">
+      <h5 class="my-3">Products</h5>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-link active">All products</li>
+        <li class="nav-link ">Yerba Mate</li>
+        <li class="nav-link ">Bombilla</li>
+        <li class="nav-link">Cup</li>
+      </ul>
+      <hr>
+      <h5 class="my-3">Sort</h5>
+      <select class="form-select">
+        <option selected disabled>select sorting</option>
+        <option>Alphabetical</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+      <hr>
+    </section>
+
+    <section class="col-md-10">
+      <dir class="row justify-content-between px-2">
+        <div class="col-auto align-self-center ps-1">
+          <header>
+            <span>Showing <strong>10</strong> of <strong>50</strong></span>
+          </header>
+        </div>
+        <div class="col-auto pe-1">
+          <div class="row mt-2">
+            <div class="col-auto mx-1 px-0">
+              <input class="form-control col" type="text" placeholder="Search">
+            </div>
+            <div class="col-auto mx-1 px-0">
+              <button class="col btn btn-outline-primary">Search</button>
+            </div>
+            <div class="col-auto ms-1 ps-0">
+              <button class="col btn btn-outline-success">Reset</button>
+            </div>
+          </div>
+        </div>
+      </dir>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        <div class="col" *ngFor="let item of products">
+          <app-product-item [product]="item"></app-product-item>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
