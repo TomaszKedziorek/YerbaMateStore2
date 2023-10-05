@@ -17,6 +17,9 @@ public class ProductsController : ControllerBase
   private readonly IGenericRepository<Bombilla> _bombillaRepository;
   private readonly IGenericRepository<Cup> _cupRepository;
   private readonly IGenericRepository<Product> _productRepository;
+  private readonly IGenericRepository<ProductBrand> _brandRepository;
+  private readonly IGenericRepository<ProductType> _typeRepository;
+  private readonly IGenericRepository<Country> _countryRepository;
   private readonly IMapper _mapper;
 
   public ProductsController(
@@ -24,14 +27,19 @@ public class ProductsController : ControllerBase
     IGenericRepository<Bombilla> bombillaRepository,
     IGenericRepository<Cup> cupRepository,
     IGenericRepository<Product> productRepository,
-    IMapper mapper
-    )
+    IMapper mapper,
+    IGenericRepository<ProductType> typeRepository,
+    IGenericRepository<ProductBrand> brandRepository,
+    IGenericRepository<Country> countryRepository)
   {
     _yerbaMateRepository = yerbaMateRepository;
     _bombillaRepository = bombillaRepository;
     _cupRepository = cupRepository;
     _productRepository = productRepository;
     _mapper = mapper;
+    _typeRepository = typeRepository;
+    _brandRepository = brandRepository;
+    _countryRepository = countryRepository;
   }
 
   [HttpGet]
@@ -128,5 +136,22 @@ public class ProductsController : ControllerBase
     if (product == null)
       return NotFound(new ApiResponse(404));
     return _mapper.Map<BombillaDto>(product);
+  }
+
+  [HttpGet("brands")]
+  public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
+  {
+    return Ok(await _brandRepository.GetAllAsync());
+  }
+
+  [HttpGet("types")]
+  public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductTypes()
+  {
+    return Ok(await _typeRepository.GetAllAsync());
+  }
+  [HttpGet("countries")]
+  public async Task<ActionResult<IReadOnlyList<Country>>> GetProductCountries()
+  {
+    return Ok(await _countryRepository.GetAllAsync());
   }
 }
