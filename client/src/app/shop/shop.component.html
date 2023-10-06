@@ -2,34 +2,71 @@
   <div class="row">
 
     <section class="col-md-2">
-      <h5 class="my-3">Products</h5>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-link active">All products</li>
-        <li class="nav-link ">Yerba Mate</li>
-        <li class="nav-link ">Bombilla</li>
-        <li class="nav-link">Cup</li>
+      <h5 class="my-3 d-flex justify-content-between" (click)="isProductTypesCollapsed = !isProductTypesCollapsed"
+        [attr.aria-expanded]="!isProductTypesCollapsed" aria-controls="collapseBasic">Products
+        <i class="bi bi-caret-down" *ngIf="isProductTypesCollapsed"></i>
+        <i class="bi bi-caret-up" *ngIf="!isProductTypesCollapsed"></i>
+      </h5>
+      <ul class="nav nav-pills flex-column mb-auto" [collapse]="isProductTypesCollapsed" [isAnimated]="true">
+        <li class="nav-link" [ngClass]="{'active':activeProductTypeId==0}" (click)="getProducts(0)">All products</li>
+        <li class="nav-link" *ngFor="let type of types" (click)="getProducts(type.id)"
+          [ngClass]="{'active':activeProductTypeId==type.id}">{{type.name}}</li>
       </ul>
+
       <hr>
+
+      <div *ngIf="activeProductTypeId==1">
+        <h5 class="my-3 d-flex justify-content-between" (click)="isCountriesCollapsed = !isCountriesCollapsed"
+          [attr.aria-expanded]="!isCountriesCollapsed" aria-controls="collapseBasic">Country
+          <i class="bi bi-caret-down" *ngIf="isCountriesCollapsed"></i>
+          <i class="bi bi-caret-up" *ngIf="!isCountriesCollapsed"></i>
+        </h5>
+        <ul class="nav nav-pills flex-column mb-auto" [collapse]="isCountriesCollapsed" [isAnimated]="true">
+          <li class="nav-link d-flex justify-content-between" *ngFor="let country of countries"
+            [ngClass]="{'active':activeCountryId==country.id}" (click)="setActiveCountry(country.id)">
+            <span> {{country.name}} </span>
+            <span [ngClass]="'fi fi-'+country.isoAlfa2Code"></span>
+          </li>
+        </ul>
+
+        <hr>
+
+        <h5 class="my-3 d-flex justify-content-between" (click)="isProductBrandsCollapsed = !isProductBrandsCollapsed"
+          [attr.aria-expanded]="!isProductBrandsCollapsed" aria-controls="collapseBasic">
+          Brand
+          <i class="bi bi-caret-down" *ngIf="isProductBrandsCollapsed"></i>
+          <i class="bi bi-caret-up" *ngIf="!isProductBrandsCollapsed"></i>
+        </h5>
+        <ul class="nav nav-pills flex-column mb-auto" [collapse]="isProductBrandsCollapsed" [isAnimated]="true">
+          <li class="nav-link d-flex justify-content-between" *ngFor="let brand of brands"
+            [ngClass]="{'active':activeProductBrandId==brand.id}" (click)="setActiveBrand(brand.id)">
+            <span> {{brand.name}} </span>
+          </li>
+        </ul>
+        <hr>
+      </div>
+
       <h5 class="my-3">Sort</h5>
       <select class="form-select">
         <option selected disabled>select sorting</option>
-        <option>Alphabetical</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
+        <option class="sortSelectOption">Alphabetical</option>
+        <option class="sortSelectOption">Price: Low to High</option>
+        <option class="sortSelectOption">Price: High to Low</option>
       </select>
       <hr>
     </section>
 
     <section class="col-md-10">
-      <dir class="row justify-content-between px-2">
-        <div class="col-auto align-self-center ps-1">
+      <div class="row justify-content-between my-2">
+
+        <div class="col-auto">
           <header>
             <span>Showing <strong>10</strong> of <strong>50</strong></span>
           </header>
         </div>
-        <div class="col-auto pe-1">
-          <div class="row mt-2">
+
+        <div class="col-auto">
+          <div class="row">
             <div class="col-auto mx-1 px-0">
               <input class="form-control col" type="text" placeholder="Search">
             </div>
@@ -37,11 +74,12 @@
               <button class="col btn btn-outline-primary">Search</button>
             </div>
             <div class="col-auto ms-1 ps-0">
-              <button class="col btn btn-outline-success">Reset</button>
+              <button class="col btn btn-outline-success" (click)="reset()">Reset</button>
             </div>
           </div>
         </div>
-      </dir>
+
+      </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         <div class="col" *ngFor="let item of products">
