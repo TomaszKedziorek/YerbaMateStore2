@@ -18,18 +18,18 @@ export class ShopService {
   public getProducts<TProduct>(productTypeName: string = "") {
     productTypeName = productTypeName ? '/' + productTypeName : "";
     return this.http.get<IPagination<TProduct>>(
-      `${this.baseUrl}/products${productTypeName}?pageSize=8`);
+      `${this.baseUrl}products${productTypeName}?pageSize=8`);
   }
-  
+
   public getProductBrands() {
-    return this.http.get<IProductBrand[]>(this.baseUrl + '/products/brands');
+    return this.http.get<IProductBrand[]>(this.baseUrl + 'products/brands');
   }
 
   public getProductTypes() {
-    return this.http.get<IProductType[]>(this.baseUrl + '/products/types');
+    return this.http.get<IProductType[]>(this.baseUrl + 'products/types');
   }
 
   public getProductCountries() {
-    return this.http.get<ICountry[]>(this.baseUrl + '/products/countries');
+    return this.http.get<ICountry[]>(this.baseUrl + 'products/countries');
   }
 }
