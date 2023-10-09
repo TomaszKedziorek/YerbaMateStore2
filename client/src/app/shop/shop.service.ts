@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IPagination } from '../shared/models/IPagination';
 import { IProductBrand } from '../shared/models/IProductBrand';
 import { ICountry } from '../shared/models/ICountry';
 import { IProductType } from '../shared/models/IProductType';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,21 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts<TProduct>(productTypeName: string = "") {
-    productTypeName = productTypeName ? '/' + productTypeName : "";
-    return this.http.get<IPagination<TProduct>>(
-      `${this.baseUrl}products${productTypeName}?pageSize=8`);
+  public getProducts<TProduct>(productTypeName?: string, brandId?: number, countryId?: number) {
+    let endpoint: string = productTypeName ? `products/${productTypeName}` : 'products';
+    let params = this.setApiQueryParams(brandId, countryId);
+    return this.http.get<IPagination<TProduct>>(this.baseUrl + endpoint, { observe: 'response', params: params })
+      .pipe(
+        map(response => {
+          return response.body;
+        }));
+  }
+
+  private setApiQueryParams(brandId?: number, countryId?: number): HttpParams {
+    let params = new HttpParams();
+    if (brandId) { params = params.append('brandId', brandId.toString())}
+    if (countryId) { params = params.append('countryId', countryId.toString()) }
+    return params;
   }
 
   public getProductBrands() {
