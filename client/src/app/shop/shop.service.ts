@@ -16,9 +16,9 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts<TProduct>(productTypeName?: string, brandId?: number, countryId?: number) {
+  public getProducts<TProduct>(productTypeName?: string, brandId?: number, countryId?: number, sort?: string) {
     let endpoint: string = productTypeName ? `products/${productTypeName}` : 'products';
-    let params = this.setApiQueryParams(brandId, countryId);
+    let params = this.setApiQueryParams(brandId, countryId, sort);
     return this.http.get<IPagination<TProduct>>(this.baseUrl + endpoint, { observe: 'response', params: params })
       .pipe(
         map(response => {
@@ -26,10 +26,11 @@ export class ShopService {
         }));
   }
 
-  private setApiQueryParams(brandId?: number, countryId?: number): HttpParams {
+  private setApiQueryParams(brandId?: number, countryId?: number, sort?: string): HttpParams {
     let params = new HttpParams();
-    if (brandId) { params = params.append('brandId', brandId.toString())}
+    if (brandId) { params = params.append('brandId', brandId.toString()) }
     if (countryId) { params = params.append('countryId', countryId.toString()) }
+    if (sort) { params = params.append('sort', sort) }
     return params;
   }
 
