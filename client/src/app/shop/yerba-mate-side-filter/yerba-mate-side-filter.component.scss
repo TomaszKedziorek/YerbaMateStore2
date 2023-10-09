@@ -1,0 +1,13 @@
+ul.nav.nav-pills li.nav-link.active,
+ul.nav.nav-pills li.nav-link.active:hover {
+  background-color: var(--bs-success);
+}
+
+ul.nav.nav-pills li.nav-link:hover{
+  background-color: var(--bs-tertiary-bg);
+  cursor: pointer;
+}
+
+h5:hover {
+  cursor: pointer;
+}

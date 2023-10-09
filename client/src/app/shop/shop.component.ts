@@ -18,73 +18,69 @@ export class ShopComponent implements OnInit {
 
   public products: IProduct[] = [];
   public types: IProductType[] = [];
-  public brands: IProductBrand[] = [];
-  public countries: ICountry[] = [];
 
-  public isCountriesCollapsed: boolean = true;
   public isProductTypesCollapsed: boolean = false;
-  public isProductBrandsCollapsed: boolean = true;
-  public activeProductTypeId: number = 0;
-  public activeProductBrandId: number = 0;
-  public activeCountryId: number = 0;
 
+  public selectedProductTypeId: number = 0;
+  public selectedProductTypeName: string | undefined;
+  
+  public selectedProductBrandId: number = 0;
+  public selectedCountryId: number = 0;
 
   constructor(private shopService: ShopService) { }
 
   public ngOnInit(): void {
-    this.getProducts();
     this.getProductTypes();
-    this.getProductBrands();
-    this.getProductCountries();
+    this.getProducts();
   }
 
-  private setActiveProductType(selectedProductTypeId: number) {
-    this.activeProductTypeId = selectedProductTypeId;
-  }
   private getProductTypeName(selectedProductTypeId: number) {
     let productTypeName: string | undefined;
     productTypeName = this.types.find(x => x.id == selectedProductTypeId)?.name;
     return productTypeName ? productTypeName.toLowerCase().replace(/\s/g, '') : "";
   }
 
-  public setActiveCountry(selectedCountryId: number) {
-    this.activeCountryId = selectedCountryId;
-  }
-  public setActiveBrand(selectedBrandId: number) {
-    this.activeProductBrandId = selectedBrandId;
+  public onSelectedProductType(selectedProductTypeId: number) {
+    if (selectedProductTypeId == 0)
+      this.reset()
+    else {
+      this.selectedProductTypeId = selectedProductTypeId;
+      this.selectedProductTypeName = this.getProductTypeName(selectedProductTypeId);
+      this.getProducts();
+    }
   }
 
-  public getProducts(selectedTypeId: number = 0) {
-    this.setActiveProductType(selectedTypeId);
-    let productTypeName: string = this.getProductTypeName(selectedTypeId);
-    this.shopService.getProducts<IProduct>(productTypeName).subscribe({
-      next: result => this.products = result.data,
+  public onSelectedCountry($event: number) {
+    this.selectedCountryId = $event;
+    this.getProducts();
+  }
+
+  public onSelectedBrand($event: number) {
+    this.selectedProductBrandId = $event;
+    this.getProducts();
+  }
+
+  public getProducts() {
+    this.shopService.getProducts<IProduct>(
+      this.selectedProductTypeName, this.selectedProductBrandId, this.selectedCountryId
+    ).subscribe({
+      next: result => this.products = result ? result.data : [],
       error: err => console.log(err)
     });
   }
 
   public getProductTypes() {
     this.shopService.getProductTypes().subscribe({
-      next: result => this.types = result,
-      error: err => console.log(err)
-    });
-  }
-  public getProductBrands() {
-    this.shopService.getProductBrands().subscribe({
-      next: result => this.brands = result,
-      error: err => console.log(err)
-    });
-  }
-  public getProductCountries() {
-    this.shopService.getProductCountries().subscribe({
-      next: result => this.countries = result,
+      next: result => this.types = [{ id: 0, name: 'All' }, ...result],
       error: err => console.log(err)
     });
   }
 
   public reset(): void {
-    this.activeProductTypeId = 0;
-    this.activeProductBrandId = 0;
-    this.activeCountryId = 0;
+    this.selectedProductTypeId = 0;
+    this.selectedProductTypeName = undefined;
+    this.selectedProductBrandId = 0;
+    this.selectedCountryId = 0;
+    this.getProducts();
   }
 }

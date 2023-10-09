@@ -1,0 +1,28 @@
+<h5 class="my-3 d-flex justify-content-between" (click)="isCountriesCollapsed = !isCountriesCollapsed"
+  [attr.aria-expanded]="!isCountriesCollapsed" aria-controls="collapseBasic">Country
+  <i class="bi bi-caret-down" *ngIf="isCountriesCollapsed"></i>
+  <i class="bi bi-caret-up" *ngIf="!isCountriesCollapsed"></i>
+</h5>
+<ul class="nav nav-pills flex-column mb-auto" [collapse]="isCountriesCollapsed" [isAnimated]="true">
+  <li class="nav-link d-flex justify-content-between" *ngFor="let country of countries"
+    [ngClass]="{'active':selectedCountryId==country.id}" (click)="onSelectedCountry(country.id)">
+    <span> {{country.name}} </span>
+    <span [ngClass]="'fi fi-'+country.isoAlfa2Code"></span>
+  </li>
+</ul>
+
+<hr>
+
+<h5 class="my-3 d-flex justify-content-between" (click)="isBrandsCollapsed = !isBrandsCollapsed"
+  [attr.aria-expanded]="!isBrandsCollapsed" aria-controls="collapseBasic">
+  Brand
+  <i class="bi bi-caret-down" *ngIf="isBrandsCollapsed"></i>
+  <i class="bi bi-caret-up" *ngIf="!isBrandsCollapsed"></i>
+</h5>
+<ul class="nav nav-pills flex-column mb-auto" [collapse]="isBrandsCollapsed" [isAnimated]="true">
+  <li class="nav-link d-flex justify-content-between" *ngFor="let brand of brands"
+    [ngClass]="{'active':selectedBrandId==brand.id}" (click)="onSelectedBrand(brand.id)">
+    <span> {{brand.name}} </span>
+  </li>
+</ul>
+<hr>
