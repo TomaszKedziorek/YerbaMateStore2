@@ -9,11 +9,11 @@
       </h5>
       <ul class="nav nav-pills flex-column mb-auto" [collapse]="isProductTypesCollapsed" [isAnimated]="true">
         <li class="nav-link" *ngFor="let type of types" (click)="onSelectedProductType(type.id)"
-          [ngClass]="{'active':selectedProductTypeId==type.id}">{{type.name}}</li>
+          [ngClass]="{'active':shopParams.typeId==type.id}">{{type.name}}</li>
       </ul>
 
       <hr>
-      <app-yerba-mate-side-filter *ngIf="selectedProductTypeId==1" (selectBrandEvent)="onSelectedBrand($event)"
+      <app-yerba-mate-side-filter *ngIf="shopParams.typeId" (selectBrandEvent)="onSelectedBrand($event)"
         (selectCountryEvent)="onSelectedCountry($event)">
       </app-yerba-mate-side-filter>
 
@@ -31,7 +31,19 @@
 
         <div class="col-auto">
           <header>
-            <span>Showing <strong>10</strong> of <strong>50</strong></span>
+            <span *ngIf="totalCount && totalCount>0">Showing 
+              <strong>
+                {{(shopParams.pageNumber-1)*shopParams.pageSize+1}}
+                -
+                {{
+                  shopParams.pageNumber*shopParams.pageSize
+                  > totalCount
+                  ?totalCount
+                  :shopParams.pageNumber*shopParams.pageSize
+                }}
+              </strong> of <strong>{{totalCount}}</strong>
+            </span>
+            <span *ngIf="totalCount<=0"><strong>0</strong> Results</span>
           </header>
         </div>
 
@@ -57,11 +69,26 @@
         </div>
       </div>
 
-      <div class="" *ngIf="products.length<=0">
+      <div class="my-5" *ngIf="products.length<=0">
         <div class="col alert alert-info">Currently there are no such products.</div>
       </div>
 
-      
+      <div class="row row-cols-1 justify-content-sm-center my-5">
+        <div class="col-auto">
+          <pagination 
+          *ngIf="totalCount && totalCount>0"
+          [(ngModel)]="shopParams.pageNumber"
+          [totalItems]="this.totalCount"
+          [itemsPerPage]="this.shopParams.pageSize"
+          (pageChanged)="onPageChanged($event)"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="&laquo;"
+          lastText="&raquo;"
+          class="my-pagination" >
+        </pagination>
+        </div>
+      </div>
     </section>
 
   </div>

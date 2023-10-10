@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../shared/models/IProduct';
-import { IBombilla } from '../shared/models/IBombilla';
-import { IYerbaMate } from '../shared/models/IYerbaMate';
-import { ICup } from '../shared/models/ICup';
 import { ShopService } from './shop.service';
-import { IPagination } from '../shared/models/IPagination';
 import { IProductType } from '../shared/models/IProductType';
-import { IProductBrand } from '../shared/models/IProductBrand';
-import { ICountry } from '../shared/models/ICountry';
+import { ShopParams } from '../shared/models/shopParams';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+
 
 @Component({
   selector: 'app-shop',
@@ -21,13 +18,10 @@ export class ShopComponent implements OnInit {
 
   public isProductTypesCollapsed: boolean = false;
 
-  public selectedProductTypeId: number = 0;
-  public selectedProductTypeName: string | undefined;
+  public shopParams: ShopParams = new ShopParams();
+  public totalCount!: number;
+  public typeName: string | undefined;
 
-  public selectedProductBrandId: number = 0;
-  public selectedCountryId: number = 0;
-
-  public sortSelected: string | undefined;
   sortOption = [
     { name: 'Alphabetical', value: 'Name' },
     { name: 'Price: Low to High', value: 'priceAsc' },
@@ -41,40 +35,43 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  private getProductTypeName(selectedProductTypeId: number) {
+  private getProductTypeName(typeId: number) {
     let productTypeName: string | undefined;
-    productTypeName = this.types.find(x => x.id == selectedProductTypeId)?.name;
+    productTypeName = this.types.find(x => x.id == typeId)?.name;
     return productTypeName ? productTypeName.toLowerCase().replace(/\s/g, '') : "";
   }
 
-  public onSelectedProductType(selectedProductTypeId: number) {
-    if (selectedProductTypeId == 0)
+  public onSelectedProductType(typeId: number) {
+    if (typeId == 0)
       this.reset()
     else {
-      this.selectedProductTypeId = selectedProductTypeId;
-      this.selectedProductTypeName = this.getProductTypeName(selectedProductTypeId);
+      this.shopParams.typeId = typeId;
+      this.typeName = this.getProductTypeName(typeId);
       this.getProducts();
     }
   }
 
   public onSelectedCountry($event: number) {
-    this.selectedCountryId = $event;
+    this.shopParams.countryId = $event;
     this.getProducts();
   }
 
   public onSelectedBrand($event: number) {
-    this.selectedProductBrandId = $event;
+    this.shopParams.brandId = $event;
     this.getProducts();
   }
 
   public getProducts() {
-    this.shopService.getProducts<IProduct>(
-      this.selectedProductTypeName,
-      this.selectedProductBrandId,
-      this.selectedCountryId,
-      this.sortSelected
-    ).subscribe({
-      next: result => this.products = result ? result.data : [],
+    this.shopService.getProducts<IProduct>(this.shopParams, this.typeName).subscribe({
+      next: result => {
+        if (result) {
+          this.products = result.data;
+          this.shopParams.pageNumber = result.pageIndex;
+          this.shopParams.pageSize = result.pageSize;
+          this.totalCount = result.count;
+        }
+      }
+      ,
       error: err => console.log(err)
     });
   }
@@ -87,16 +84,18 @@ export class ShopComponent implements OnInit {
   }
 
   public reset(): void {
-    this.selectedProductTypeId = 0;
-    this.selectedProductTypeName = undefined;
-    this.selectedProductBrandId = 0;
-    this.selectedCountryId = 0;
-    this.sortSelected = undefined;
+    this.typeName = undefined;
+    this.shopParams = new ShopParams();
     this.getProducts();
   }
 
   public onSortSelected($event: Event) {
-    this.sortSelected = ($event.target as HTMLSelectElement).value;
+    this.shopParams.sort = ($event.target as HTMLSelectElement).value;
+    this.getProducts();
+  }
+
+  onPageChanged(event: PageChangedEvent): void {
+    this.shopParams.pageNumber = event.page;
     this.getProducts();
   }
 }

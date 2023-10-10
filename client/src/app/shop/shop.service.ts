@@ -6,6 +6,7 @@ import { IProductBrand } from '../shared/models/IProductBrand';
 import { ICountry } from '../shared/models/ICountry';
 import { IProductType } from '../shared/models/IProductType';
 import { map } from 'rxjs';
+import { ShopParams } from '../shared/models/shopParams';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts<TProduct>(productTypeName?: string, brandId?: number, countryId?: number, sort?: string) {
+  public getProducts<TProduct>(shopParams: ShopParams, productTypeName?: string) {
     let endpoint: string = productTypeName ? `products/${productTypeName}` : 'products';
-    let params = this.setApiQueryParams(brandId, countryId, sort);
+    let params = this.setApiQueryParams(shopParams);
     return this.http.get<IPagination<TProduct>>(this.baseUrl + endpoint, { observe: 'response', params: params })
       .pipe(
         map(response => {
@@ -26,11 +27,13 @@ export class ShopService {
         }));
   }
 
-  private setApiQueryParams(brandId?: number, countryId?: number, sort?: string): HttpParams {
+  private setApiQueryParams(shopParams: ShopParams): HttpParams {
     let params = new HttpParams();
-    if (brandId) { params = params.append('brandId', brandId.toString()) }
-    if (countryId) { params = params.append('countryId', countryId.toString()) }
-    if (sort) { params = params.append('sort', sort) }
+    if (shopParams.brandId) { params = params.append('brandId', shopParams.brandId.toString()) }
+    if (shopParams.countryId) { params = params.append('countryId', shopParams.countryId.toString()) }
+    if (shopParams.sort) { params = params.append('sort', shopParams.sort) }
+    params=params.append('pageIndex',shopParams.pageNumber.toString());
+    params=params.append('pageSize',shopParams.pageSize.toString());
     return params;
   }
 
