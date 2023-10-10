@@ -6,5 +6,5 @@ export class ShopParams {
 
   public sort: string | undefined;
   public pageNumber: number = 1;
-  public pageSize: number = 5;
+  public pageSize: number = 8;
 }

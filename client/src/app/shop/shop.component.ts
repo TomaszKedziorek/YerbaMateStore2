@@ -22,11 +22,18 @@ export class ShopComponent implements OnInit {
   public totalCount!: number;
   public typeName: string | undefined;
 
-  sortOption = [
+  public sortOption = [
     { name: 'Alphabetical', value: 'Name' },
     { name: 'Price: Low to High', value: 'priceAsc' },
     { name: 'Price: High to Low', value: 'priceDesc' }
-  ]
+  ];
+
+  public pageSizeOption = [
+    { name: '4', value: 4 },
+    { name: '8', value: 8 },
+    { name: '12', value: 12 },
+    { name: '24', value: 24 },
+  ];
 
   constructor(private shopService: ShopService) { }
 
@@ -94,8 +101,13 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  onPageChanged(event: PageChangedEvent): void {
+  public onPageChanged(event: PageChangedEvent): void {
     this.shopParams.pageNumber = event.page;
+    this.getProducts();
+  }
+
+  public onPageSizeSelect($event: Event) {
+    this.shopParams.pageSize = <number> <unknown>($event.target as HTMLSelectElement).value;
     this.getProducts();
   }
 }

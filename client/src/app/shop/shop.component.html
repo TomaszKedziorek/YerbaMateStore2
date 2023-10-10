@@ -47,8 +47,19 @@
           </header>
         </div>
 
+
+
         <div class="col-auto">
           <div class="row">
+            <div class="col-auto col-auto mx-1 px-0">
+              <select class="form-select" (change)="onPageSizeSelect($event)">
+                <option 
+                *ngFor="let option of pageSizeOption;let i=index"
+                value="{{option.value}}"
+                [attr.value]="i" [attr.selected]="i == 1 ? true : null"
+                >{{option.name}}</option>
+              </select>
+            </div>
             <div class="col-auto mx-1 px-0">
               <input class="form-control col" type="text" placeholder="Search">
             </div>
