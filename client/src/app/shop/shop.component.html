@@ -28,25 +28,20 @@
 
     <section class="col-md-10">
       <div class="row justify-content-between my-2">
-        
-      <div class="col-auto">
-        <app-paging-header 
-        [pageNumber]="shopParams.pageNumber"
-        [pageSize]="shopParams.pageSize"
-        [totalCount]="totalCount">
-        </app-paging-header>
-      </div>
+
+        <div class="col-auto">
+          <app-paging-header [pageNumber]="shopParams.pageNumber" [pageSize]="shopParams.pageSize"
+            [totalCount]="totalCount">
+          </app-paging-header>
+        </div>
 
 
         <div class="col-auto">
           <div class="row">
             <div class="col-auto col-auto mx-1 px-0">
               <select class="form-select" (change)="onPageSizeSelect($event)">
-                <option 
-                *ngFor="let option of pageSizeOption;let i=index"
-                value="{{option.value}}"
-                [attr.selected]="i == 1 ? true : null"
-                >{{option.name}}</option>
+                <option *ngFor="let option of pageSizeOption;let i=index" value="{{option.value}}"
+                  [attr.selected]="i == 1 ? true : null">{{option.name}}</option>
               </select>
             </div>
             <div class="col-auto mx-1 px-0">
@@ -75,18 +70,12 @@
 
       <div class="row row-cols-1 justify-content-sm-center my-5">
         <div class="col-auto">
-          <pagination 
-          *ngIf="totalCount && totalCount>0"
-          [(ngModel)]="shopParams.pageNumber"
-          [totalItems]="this.totalCount"
-          [itemsPerPage]="this.shopParams.pageSize"
-          (pageChanged)="onPageChanged($event)"
-          previousText="&lsaquo;"
-          nextText="&rsaquo;"
-          firstText="&laquo;"
-          lastText="&raquo;"
-          class="my-pagination" >
-        </pagination>
+          <app-pager
+            [pageSize]="shopParams.pageSize"
+            [pageNumber]="shopParams.pageNumber"
+            [totalCount]="totalCount"
+            (pageChanged)="onPageChanged($event)"
+          ></app-pager>
         </div>
       </div>
     </section>

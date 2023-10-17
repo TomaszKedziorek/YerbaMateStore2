@@ -12,8 +12,3 @@ h5:hover {
   cursor: pointer;
 }
 
-.my-pagination::ng-deep .page-item.active .page-link {
-  color: var(--bs-pagination-active-color) !important;
-  background-color: var(--bs-success) !important;
-  border-color: var(--bs-success) !important;
-}

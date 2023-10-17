@@ -3,8 +3,6 @@ import { IProduct } from '../shared/models/IProduct';
 import { ShopService } from './shop.service';
 import { IProductType } from '../shared/models/IProductType';
 import { ShopParams } from '../shared/models/shopParams';
-import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-
 
 @Component({
   selector: 'app-shop',
@@ -101,8 +99,8 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  public onPageChanged(event: PageChangedEvent): void {
-    this.shopParams.pageNumber = event.page;
+  public onPageChanged(event: any): void {
+    this.shopParams.pageNumber = event;   
     this.getProducts();
   }
 
