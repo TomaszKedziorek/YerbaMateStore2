@@ -107,7 +107,7 @@ export class ShopComponent implements OnInit {
   }
 
   public onPageSizeSelect($event: Event) {
-    this.shopParams.pageSize = <number> <unknown>($event.target as HTMLSelectElement).value;
+    this.shopParams.pageSize = <number> <unknown>($event.target as HTMLSelectElement).value;    
     this.getProducts();
   }
 }
