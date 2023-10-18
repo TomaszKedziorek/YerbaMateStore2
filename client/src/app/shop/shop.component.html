@@ -45,13 +45,13 @@
               </select>
             </div>
             <div class="col-auto mx-1 px-0">
-              <input class="form-control col" type="text" placeholder="Search">
+              <input #search (keyup.enter)="onSearch()" class="form-control col" type="text" placeholder="Search">
             </div>
             <div class="col-auto mx-1 px-0">
-              <button class="col btn btn-outline-primary">Search</button>
+              <button class="col btn btn-outline-primary" (click)="onSearch()">Search</button>
             </div>
             <div class="col-auto ms-1 ps-0">
-              <button class="col btn btn-outline-success" (click)="reset()">Reset</button>
+              <button class="col btn btn-outline-success" (click)="onReset()">Reset</button>
             </div>
           </div>
         </div>

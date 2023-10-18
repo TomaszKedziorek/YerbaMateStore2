@@ -29,11 +29,12 @@ export class ShopService {
 
   private setApiQueryParams(shopParams: ShopParams): HttpParams {
     let params = new HttpParams();
+    if (shopParams.search) { params = params.append('search', shopParams.search) }
     if (shopParams.brandId) { params = params.append('brandId', shopParams.brandId.toString()) }
     if (shopParams.countryId) { params = params.append('countryId', shopParams.countryId.toString()) }
     if (shopParams.sort) { params = params.append('sort', shopParams.sort) }
-    params=params.append('pageIndex',shopParams.pageNumber.toString());
-    params=params.append('pageSize',shopParams.pageSize.toString());
+    params = params.append('pageIndex', shopParams.pageNumber.toString());
+    params = params.append('pageSize', shopParams.pageSize.toString());
     return params;
   }
 
