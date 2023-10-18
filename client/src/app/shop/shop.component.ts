@@ -49,21 +49,24 @@ export class ShopComponent implements OnInit {
 
   public onSelectedProductType(typeId: number) {
     if (typeId == 0)
-      this.reset()
+      this.onReset()
     else {
       this.shopParams.typeId = typeId;
       this.typeName = this.getProductTypeName(typeId);
+      this.shopParams.pageNumber = 1;
       this.getProducts();
     }
   }
 
   public onSelectedCountry($event: number) {
     this.shopParams.countryId = $event;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 
   public onSelectedBrand($event: number) {
     this.shopParams.brandId = $event;
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 
@@ -95,8 +98,10 @@ export class ShopComponent implements OnInit {
   }
 
   public onPageChanged(event: any): void {
-    this.shopParams.pageNumber = event;
-    this.getProducts();
+    if (this.shopParams.pageNumber !== event) {
+      this.shopParams.pageNumber = event;
+      this.getProducts();
+    }
   }
 
   public onPageSizeSelect($event: Event) {
