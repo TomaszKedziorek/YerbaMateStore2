@@ -13,7 +13,7 @@
       </ul>
 
       <hr>
-      <app-yerba-mate-side-filter *ngIf="shopParams.typeId" (selectBrandEvent)="onSelectedBrand($event)"
+      <app-yerba-mate-side-filter *ngIf="shopParams.typeId==1" (selectBrandEvent)="onSelectedBrand($event)"
         (selectCountryEvent)="onSelectedCountry($event)">
       </app-yerba-mate-side-filter>
 
