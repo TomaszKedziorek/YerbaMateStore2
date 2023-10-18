@@ -78,6 +78,7 @@ export class ShopComponent implements OnInit {
           this.shopParams.pageNumber = result.pageIndex;
           this.shopParams.pageSize = result.pageSize;
           this.totalCount = result.count;
+          window.scroll(0,0);
         }
       }
       ,
