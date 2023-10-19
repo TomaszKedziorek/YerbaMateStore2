@@ -7,7 +7,7 @@ import { YerbaMateSideFilterComponent } from './yerba-mate-side-filter/yerba-mat
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { RouterModule } from "@angular/router"; 
 
 
 @NgModule({
@@ -21,7 +21,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     CommonModule,
     CollapseModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     ShopComponent

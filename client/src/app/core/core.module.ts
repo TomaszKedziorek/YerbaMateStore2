@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-
-
+import { RouterModule } from "@angular/router"; 
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
   ],
   imports: [
     CommonModule,
-    CollapseModule
+    CollapseModule,
+    RouterModule
   ],
   exports: [
     NavBarComponent
