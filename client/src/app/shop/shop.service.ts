@@ -27,6 +27,11 @@ export class ShopService {
         }));
   }
 
+  public getProduct<TProduct>(id: number, productTypeName?: string) {
+    let endpoint: string = productTypeName ? `products/${productTypeName}/` : 'products/';
+    return this.http.get<TProduct>(this.baseUrl + endpoint + id);
+  }
+
   private setApiQueryParams(shopParams: ShopParams): HttpParams {
     let params = new HttpParams();
     if (shopParams.search) { params = params.append('search', shopParams.search) }
