@@ -9,4 +9,8 @@ import { IProduct } from 'src/app/shared/models/IProduct';
 export class ProductItemComponent {
 
   @Input() product!: IProduct;
+
+  public getProductTypeName() {
+    return this.product.productType ? this.product.productType.toLowerCase().replace(/\s/g, '') : "";
+  }
 }
