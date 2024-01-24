@@ -1,0 +1,25 @@
+.slickCarouselImg {
+  height: 100px !important;
+  width: auto !important;
+}
+
+
+
+
+.slick-arrow {
+  &::before{
+    color: var(--bs-success);
+  }
+  &.slick-prev {
+    left: -20px;
+  }
+  &.slick-next {
+    right: -20px;
+  }
+}
+.slick-dots li button,
+.slick-dots li button{
+  &::before{
+    color: var(--bs-success);
+  }
+}

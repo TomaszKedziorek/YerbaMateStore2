@@ -1,1 +1,86 @@
-<p>product-details works!</p>
+<section class="" *ngIf="product">
+  <div class="container pb-5 mx-0 ">
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-12 col-md-4 my-3 my-md-0 order-1 order-md-0">
+        <div class="card mb-3 border-1">
+          <img class="card-img img-fluid mx-auto d-block border-0" [src]="product.images[0].pictureUrl"
+            alt="Card image cap" id="product-detail" style="height: 480px; width: auto;">
+
+          <div class="card-footer bg-transparent">
+            <app-carusel [slides]="product.images"></app-carusel>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 order-0 order-md-1">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="h2">{{product.name}}</h1>
+            <p>
+              <span class="h4 text-success">{{product.price|currency}}</span>
+            </p>
+
+            <app-yerba-mate-details [product]="product"
+              *ngIf="product&&productType===allTypes.YERBAMATE"></app-yerba-mate-details>
+            <app-bombilla-details [product]="product"
+              *ngIf="product&&productType===allTypes.BOMBILLA"></app-bombilla-details>
+            <app-cup-details [product]="product" 
+              *ngIf="product&&productType===allTypes.CUP"></app-cup-details>
+
+            <form method="post">
+              <div class="row">
+                <div class="col-auto">
+                  <ul class="list-inline pb-3 mb-0">
+                    <li class="list-inline-item text-right">
+                      <h6>Quantity</h6>
+                      <input type="hidden" id="product-quanity">
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn btn-success fw-bold square-btn" (click)="minusOne()" [disabled]="quantity==1">-</button>
+                    </li>
+                    <li class="list-inline-item">
+                      <span class="btn btn-md bg-secondary text-light fw-bold"
+                        style="cursor: default; height: 40px;">{{quantity}}</span>
+                    </li>
+                    <li class="list-inline-item">
+                      <button class="btn btn-success fw-bold square-btn" (click)="plusOne()" [disabled]="quantity>=product.quantity">+</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-auto">
+                  <ul class="list-inline pb-3 mb-0">
+                    <li class="list-inline-item text-right">
+                      <h6>In stock</h6>
+                      <input type="hidden" id="product-in-stock">
+                    </li>
+                    <li class="list-inline-item">
+                      <span class="fw-bold btn " [ngClass]="{'btn-success':product.quantity>=20,
+                        'btn-info':product.quantity<20,
+                        'btn-warning':product.quantity<10,
+                        'btn-danger':product.quantity<=0}" style="cursor: default; height: 40px;">
+                        {{product.quantity}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row justify-content-start">
+                <div class="col-12 col-sm-6 col-md-4">
+                  <button type="submit" class="btn btn-success w-100" [disabled]="product.quantity<=0">Add To Cart</button>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-0">
+                  <a routerLink="/shop" class="btn btn-secondary w-100">
+                    Back to list
+                  </a>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
