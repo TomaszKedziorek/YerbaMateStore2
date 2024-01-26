@@ -5,7 +5,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from "@angular/router";
 import { TestErrorComponent } from './test-error/test-error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ServerErrorComponent } from './server-error/server-error.component'; 
+import { ServerErrorComponent } from './server-error/server-error.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,13 @@ import { ServerErrorComponent } from './server-error/server-error.component';
   imports: [
     CommonModule,
     CollapseModule,
-    RouterModule
+    RouterModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      closeButton:true,
+      preventDuplicates: true,
+    })
   ],
   exports: [
     NavBarComponent
