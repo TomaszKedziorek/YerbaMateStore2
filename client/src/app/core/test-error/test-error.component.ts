@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 export class TestErrorComponent implements OnInit {
 
   private baseUrl: string = environment.apiUrl;
-  public errorCode!: number;
-  public errorMessage!: string;
+  public validationErrors!: string[];
+  public invalidUrl!: string;
 
   public constructor(private httpClient: HttpClient) { }
 
@@ -31,13 +31,15 @@ export class TestErrorComponent implements OnInit {
   }
 
   public get400VlaidationError(): void {
-    // this.httpClient.get(this.baseUrl +'Buggy/badrequest/sixtysix/true').subscribe({
-    this.httpClient.get(this.baseUrl + 'products/sixtysix').subscribe({
+    // this.httpClient.get(this.baseUrl + 'Buggy/badrequest/sixtysix/334').subscribe({
+      this.httpClient.get(this.baseUrl + 'products/sixtysix').subscribe({
       next: result => {
         console.log(result);
       },
       error: error => {
         console.log(error);
+        this.validationErrors = error.error.errors;
+        this.invalidUrl = error.url;
       }
     })
   }

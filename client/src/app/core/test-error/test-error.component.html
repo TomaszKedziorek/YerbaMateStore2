@@ -10,7 +10,15 @@
     </section>
 
     <section class="col-8">
-
+      <div class="row ms-3" *ngIf="validationErrors">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h2 class="p-0">Validation Errors</h2>
+            <span class="text-warning"> {{invalidUrl}}</span>
+          </li>
+          <li class="list-group-item list-group-item-danger" *ngFor="let error of validationErrors">{{error}}</li>
+        </ul>
+      </div>
     </section>
   </div>
 </div>
