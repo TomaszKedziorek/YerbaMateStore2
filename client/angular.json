@@ -35,9 +35,10 @@
               "./node_modules/font-awesome/css/font-awesome.min.css",
               "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
               "./node_modules/flag-icons/css/flag-icons.min.css",
-              "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.scss",
-              "node_modules/slick-carousel/slick/slick-theme.scss"
+              "node_modules/slick-carousel/slick/slick-theme.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
