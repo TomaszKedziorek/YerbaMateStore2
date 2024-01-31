@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/shared/models/IProduct';
 import { ShopService } from '../shop.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductType } from 'src/app/shared/models/product-type';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-product-details',
@@ -16,13 +17,17 @@ export class ProductDetailsComponent implements OnInit {
   public productType!: ProductType;
   public allTypes = ProductType;
 
-  constructor(private shopService: ShopService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private shopService: ShopService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     let productTypeName = this.route.snapshot.paramMap.get('productTypeName') ?? "";
     this.productType = this.setProductType(productTypeName);
     this.loadProduct(Number(id), productTypeName);
+    // this.breadcrumbService.set('@productDetails', this.product.name);
   }
 
   private setProductType(productTypeName: string): number {
@@ -43,8 +48,10 @@ export class ProductDetailsComponent implements OnInit {
         if (result) {
           if (!productType)
             this.router.navigate(['/shop/', result.productType.toLowerCase().replace(/\s/g, ''), id]);
-          else
+          else {
             this.product = result;
+            this.breadcrumbService.set('@productDetails', this.product.name);
+          }
         }
       },
       error: err => console.log(err)
