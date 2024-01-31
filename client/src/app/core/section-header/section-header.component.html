@@ -1,22 +1,19 @@
-<section class="py-5 bg-body-secondary" style="margin-top: 4.41rem;">
+<ng-container *ngIf="(breadcrumb$ | async) as breadcrumbs">
+  <section *ngIf="breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length-1].label !== 'Home'"
+    class="py-5 bg-body-secondary" style="margin-top: 4.41rem;">
+    <div class="container">
+      <div class="row d-flex align-items-center">
 
-  <div class="container">
-    <div class="row d-flex align-items-center">
+        <div class="col-12 col-md-8">
+          <h1 class="">{{breadcrumbs.length > 0 && breadcrumbs[breadcrumbs.length-1].label | titlecase}}</h1>
+        </div>
 
-      <div class="col-12 col-md-9">
-        <h1 class="">Title</h1>
+        <div class="col-12 col-md-4">
+          <xng-breadcrumb></xng-breadcrumb>
+        </div>
+
       </div>
-
-      <div class="col-12 col-md-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a >Home</a></li>
-            <li class="breadcrumb-item active">Library</li>
-          </ol>
-        </nav>
-      </div>
-
     </div>
-  </div>
 
-</section>
+  </section>
+</ng-container>
